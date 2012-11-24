@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ControleCondominio.ClassesDominio
+namespace ControleCondominio.Model
 {
-    class Usuario
+    class Usuario:Pessoa
     {
-        private int IDUsuario;
-        private string nome;
+        
         private string login;
         private string senha;
         private string email;
