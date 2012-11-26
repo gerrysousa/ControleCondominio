@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\cntrApartamento.cs" />
+    <Compile Include="Controller\cntrCondominio.cs" />
+    <Compile Include="Controller\cntrLocatario.cs" />
+    <Compile Include="Controller\cntrMorador.cs" />
+    <Compile Include="Controller\cntrPessoa.cs" />
+    <Compile Include="Controller\cntrUsuario.cs" />
+    <Compile Include="Controller\cntrVisitante.cs" />
     <Compile Include="Model\Apartamento.cs" />
     <Compile Include="Model\Condominio.cs" />
     <Compile Include="Model\Pessoa.cs" />
@@ -86,8 +93,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\" />
     <Folder Include="Dao\" />
+    <Folder Include="Imagens\" />
     <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
