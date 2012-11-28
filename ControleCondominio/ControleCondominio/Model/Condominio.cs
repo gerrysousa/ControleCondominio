@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
+using ControleCondominio.Dao;
 
 namespace ControleCondominio.Model
 {
@@ -47,8 +49,8 @@ namespace ControleCondominio.Model
 
         public Boolean Persistir()
         {
-            Morador objCondominioDao = new CondominioDao();
-            if (objCondominioDao.persistir(this))
+            CondominioDAO objCondominioDao = new CondominioDAO();
+            if (objCondominioDao.Persistir(this))
             {
                 return true;
             }
@@ -57,10 +59,11 @@ namespace ControleCondominio.Model
                 return false;
             }
         }
+        
         public Boolean Atualizar()
         {
-            CondominioDao objCondominioDao = new CondominioDao();
-            if (objCondominioDao.atualizar(this))
+            CondominioDAO objCondominioDao = new CondominioDAO();
+            if (objCondominioDao.Atualizar(this))
             {
                 return true;
             }
@@ -69,21 +72,22 @@ namespace ControleCondominio.Model
                 return false;
             }
         }
+        
         public static Condominio RecuperaObj(String ID)
         {
-            Condominio objCondominio = CondominioDao.recuperaObj(pID);
+            Condominio objCondominio = CondominioDAO.RecuperaObj(pID);
             return objCondominio;
         }
-
+        
         public static IList RecuperaObjetos()
         {
-            IList listCondominios = CondominioDao.recuperaObj();
+            IList listCondominios = CondominioDAO.RecuperaObj();
             return listCondominios;
         }
-
+        
         public static Boolean Excluir(String pID)
         {
-            return CondominioDao.excluir(pID);
+            return CondominioDAO.Excluir(pID);
         }
 
     #endregion

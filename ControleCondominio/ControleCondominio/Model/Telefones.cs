@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 namespace ControleCondominio.Model
 {
@@ -25,16 +26,17 @@ namespace ControleCondominio.Model
         #endregion
 
         #region Construtores
-        public Telefones(String pnome, String pCPF, String pemail, bool pIsResponsavel)
-            :base(pnome, pCPF,pemail){
-                this.isResponsavel=pIsResponsavel;
-            }
-        public Morador()//contruttor padrao
+        public Telefones(int pIDpessoa, int pnumero){
+            this.IDpessoa=pIDpessoa;
+            this.numero=pnumero;
+        }
+        public Telefones()//contruttor padrao
         {
         }
         #endregion
 
         #region métodos responsáveis pela persistência e manipulação dos objetos
+        
         public override Boolean Persistir()
         {
             Morador objTelefonesDAO = new TelefonesDAO();
@@ -49,8 +51,8 @@ namespace ControleCondominio.Model
         }
         public override Boolean Atualizar()
         {
-            MoradorDAO objMoradorDAO = new MoradorDAO();
-            if (objMoradorDAO.atualizar(this))
+            TelefonesDAO objTelefonesDAO = new TelefonesDAO();
+            if (objTelefonesDAO.atualizar(this))
             {
                 return true;
             }
@@ -59,6 +61,23 @@ namespace ControleCondominio.Model
                 return false;
             }
         }
-        #endregion
+
+         public static Apartamento RecuperaObj(String ID)
+        {
+            Apartamento objTelefone = TelefonesDAO.recuperaObj(pID);
+            return objApartamento;
+        }
+
+        public static IList RecuperaObjetos()
+        {
+            IList listTelefones = TelefonesDAO.recuperaObj();
+            return listTelefones;
+        }
+
+        public static Boolean Excluir(String pID)
+        {
+            return TelefonesDAO.excluir(pID);
+        }
+    #endregion
     }
 }

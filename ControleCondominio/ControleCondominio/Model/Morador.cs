@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ControleCondominio.Dao;
+using System.Collections;
 
 namespace ControleCondominio.Model
 {
@@ -9,6 +11,7 @@ namespace ControleCondominio.Model
     {
         private Boolean isResponsavel;
         private Apartamento apartamento;
+        private string telefone;
 
         #region gets e sets
         public Boolean IsResponsavel
@@ -21,6 +24,12 @@ namespace ControleCondominio.Model
         {
             get { return this.apartamento; }
             set { this.apartamento = value; }
+        }
+
+        public string Telefone
+        {
+            get { return this.telefone; }
+            set { this.telefone = value; }
         }
         #endregion
 
@@ -35,10 +44,12 @@ namespace ControleCondominio.Model
         #endregion
 
         #region métodos responsáveis pela persistência e manipulação dos objetos
+        
         public override Boolean Persistir()
         {
-            Morador objMoradorDAO = new MoradorDAO();
-            if (objMoradorDAO.persistir(this))
+                        
+            MoradorDAO objMoradorDAO = new MoradorDAO();
+            if (objMoradorDAO.Persistir(this))
             {
                 return true;
             }
@@ -47,10 +58,11 @@ namespace ControleCondominio.Model
                 return false;
             }
         }
+        
         public override Boolean Atualizar()
         {
             MoradorDAO objMoradorDAO = new MoradorDAO();
-            if (objMoradorDAO.atualizar(this))
+            if (objMoradorDAO.Atualizar(this))
             {
                 return true;
             }
@@ -58,6 +70,18 @@ namespace ControleCondominio.Model
             {
                 return false;
             }
+        }
+
+        public static Morador RecuperaObj(int pID)
+        {
+            Morador objMorador = MoradorDAO.RecuperaObj(pID);
+            return objMorador;
+        }
+
+        public static IList RecuperaObjetos()
+        {
+            IList ListMoradores = MoradorDAO.RecuperaObjetos();
+            return ListMoradores;
         }
         #endregion
 

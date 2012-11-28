@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using ControleCondominio.Dao;
 
 namespace ControleCondominio.Model
 {
@@ -23,7 +24,8 @@ namespace ControleCondominio.Model
         { }
 
         #region gets e sets
-        public int IDs
+       
+        public int Id
         {
             get { return this.ID; }
             set { this.ID = value; }
@@ -51,23 +53,37 @@ namespace ControleCondominio.Model
 
         #region métodos responsáveis pela persistência e manipulação dos objetos
        
-        public abstract Boolean persistir;
-        public abstract Boolean atualizar;
+        public abstract Boolean Persistir();
+        
+        public abstract Boolean Atualizar();
+        
         public static Pessoa RecuperaObj(String ID)
         {
-            Pessoa objPessoa = PessoaDao.recuperaObj(pID);
+            Pessoa objPessoa = PessoaDAO.RecuperaObj(pID);
             return objPessoa;
         }
 
         public static IList RecuperaObjetos()
         {
-            IList listPessoas = PessoaDao.recuperaObj();
+            IList listPessoas = PessoaDAO.RecuperaObj();
             return listPessoas;
         }
 
+        public static IList RecuperaObjetosPorTipo(object ptipo)
+        {
+            IList listPessoas = PessoaDAO.RecuperaObjetosPorTipo();
+            return listPessoas;
+        }
+
+        public static IList RecuperaObjetosPorApartamento(int pID)
+        {
+            IList listPessoas = PessoaDAO.RecuperaObjetosPorApartamento(pID);
+            return listPessoas;
+        }
+        
         public static Boolean Excluir(String pID)
         {
-            return PessoaDao.excluir(pID);
+            return PessoaDAO.Rxcluir(pID);
         }
 
     #endregion

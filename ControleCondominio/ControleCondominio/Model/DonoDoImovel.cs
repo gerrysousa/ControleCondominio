@@ -2,20 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ControleCondominio.Dao;
 
 namespace ControleCondominio.Model
 {
-    class Locatario:Pessoa
+    class DonoDoImovel:Pessoa
     {
-       private int qtdApartamentos;
+        private int qtdApartamentos;
         private Apartamento apartamento;
-        private Telefones telefone;
+        private string telefone;
 
         #region gets e sets
         public int QtdApartamentos
         {
             get { return this.qtdApartamentos; }
             set { this.qtdApartamentos = value; }
+        }
+
+        public string Telefone
+        {
+            get { return this.telefone; }
+            set { this.telefone = value; }
         }
 
         public Apartamento Apartamento
@@ -26,20 +33,21 @@ namespace ControleCondominio.Model
         #endregion
 
         #region Construtores
-        public Locatario(String pnome, String pCPF, String pemail, int pqtdApartamentos)
+        public DonoDoImovel(String pnome, String pCPF, String pemail, int pqtdApartamentos)
             :base(pnome, pCPF,pemail){
                 this.qtdApartamentos=pqtdApartamentos;
             }
-        public Locatario()//contruttor padrao
+        public DonoDoImovel()//contruttor padrao
         {
         }
         #endregion
 
         #region métodos responsáveis pela persistência e manipulação dos objetos
+       
         public override Boolean Persistir()
         {
-            Morador objLocatarioDAO = new LocatarioDAO();
-            if (objLocatarioDAO.persistir(this))
+            DonoDoImovelDAO objDonoDoImovelDAO = new DonoDoImovelDAO();
+            if (objDonoDoImovelDAO.Persistir(this))
             {
                 return true;
             }
@@ -48,9 +56,10 @@ namespace ControleCondominio.Model
                 return false;
             }
         }
+       
         public override Boolean Atualizar()
         {
-            LocatarioDAO objLocatarioDAO = new LocatarioDAO();
+            DonoDoImovelDAO objLocatarioDAO = new DonoDoImovelDAO();
             if (objLocatarioDAO.atualizar(this))
             {
                 return true;
@@ -60,6 +69,7 @@ namespace ControleCondominio.Model
                 return false;
             }
         }
+       
         #endregion
     }
 }

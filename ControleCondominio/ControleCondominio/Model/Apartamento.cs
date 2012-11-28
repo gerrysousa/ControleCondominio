@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ControleCondominio.Model;
+using System.Collections;
+using ControleCondominio.Dao;
 
 namespace ControleCondominio.Model
 {
@@ -12,7 +14,7 @@ namespace ControleCondominio.Model
         private int numero;
         private Condominio condominio;
         private Morador locador;
-        private Locatario locatario;
+        private DonoDoImovel locatario;
 
         #region Construtores
         public Apartamento(int pnumero)
@@ -20,7 +22,7 @@ namespace ControleCondominio.Model
             this.numero = pnumero;
             this.condominio = new Condominio();
             this.locador = new Morador();
-            this.locatario = new Locatario();
+            this.locatario = new DonoDoImovel();
         }
         public Apartamento()//contruttor padrao
         {
@@ -28,7 +30,7 @@ namespace ControleCondominio.Model
         #endregion
 
         #region gets e sets
-        public int IDs
+        public int Id
         {
             get { return this.ID; }
             set { this.ID = value; }
@@ -52,7 +54,7 @@ namespace ControleCondominio.Model
             set { this.locador = value; }
         }
 
-        public Locatario Locatario
+        public DonoDoImovel Locatario
         {
             get { return this.locatario; }
             set { this.locatario = value; }
@@ -63,8 +65,8 @@ namespace ControleCondominio.Model
 
         public Boolean Persistir()
         {
-            Morador objApartamentoDao = new ApartamentoDao();
-            if (objApartamentoDao.persistir(this))
+            ApartamentoDAO objApartamentoDao = new ApartamentoDAO();
+            if (objApartamentoDao.Persistir(this))
             {
                 return true;
             }
@@ -73,10 +75,11 @@ namespace ControleCondominio.Model
                 return false;
             }
         }
+        
         public Boolean Atualizar()
         {
-            ApartamentoDao objApartamentoDao = new ApartamentoDao();
-            if (objApartamentoDao.atualizar(this))
+            ApartamentoDAO objApartamentoDao = new ApartamentoDAO();
+            if (objApartamentoDao.Atualizar(this))
             {
                 return true;
             }
@@ -85,21 +88,22 @@ namespace ControleCondominio.Model
                 return false;
             }
         }
+        
         public static Apartamento RecuperaObj(String ID)
         {
-            Apartamento objApartamento = ApartamentoDao.recuperaObj(pID);
+            Apartamento objApartamento = ApartamentoDAO.RecuperaObj(pID);
             return objApartamento;
         }
 
         public static IList RecuperaObjetos()
         {
-            IList listApartamentos = ApartamentoDao.recuperaObj();
+            IList listApartamentos = ApartamentoDAO.RecuperaObj();
             return listApartamentos;
         }
 
         public static Boolean Excluir(String pID)
         {
-            return ApartamentoDao.excluir(pID);
+            return ApartamentoDAO.Excluir(pID);
         }
 
     #endregion

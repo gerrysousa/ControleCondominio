@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ControleCondominio.Dao;
 
 namespace ControleCondominio.Model
 {
@@ -39,10 +40,11 @@ namespace ControleCondominio.Model
         #endregion
 
         #region métodos responsáveis pela persistência e manipulação dos objetos
+       
         public override Boolean Persistir()
         {
-            Morador objUsuarioDAO = new UsuarioDAO();
-            if (objUsuarioDAO.persistir(this))
+            UsuarioDAO objUsuarioDAO = new UsuarioDAO();
+            if (objUsuarioDAO.Persistir(this))
             {
                 return true;
             }
@@ -51,10 +53,11 @@ namespace ControleCondominio.Model
                 return false;
             }
         }
+       
         public override Boolean Atualizar()
         {
             UsuarioDAO objUsuarioDAO = new UsuarioDAO();
-            if (objUsuarioDAO.atualizar(this))
+            if (objUsuarioDAO.Atualizar(this))
             {
                 return true;
             }
@@ -63,6 +66,7 @@ namespace ControleCondominio.Model
                 return false;
             }
         }
+       
         #endregion
     }
 }
